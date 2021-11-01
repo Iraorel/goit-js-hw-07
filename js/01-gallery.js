@@ -3,19 +3,22 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const conteinerGallery = document.querySelector('.gallery');
+conteinerGallery.insertAdjacentHTML('beforeend', createGalleryItems);
 
 function createGalleryItems(){
-  const markup = conteinerGallery.map( item => 
+  return conteinerGallery.map(({preview, original, description})=> {
+    return
   `<div class="gallery__item">
-  <a class="gallery__link" href="large-image.jpg">
+  <a class="gallery__link" href="${preview}">
     <img
       class="gallery__image"
-      src="small-image.jpg"
-      data-source="large-image.jpg"
-      alt="Image description"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
     />
   </a>
-</div>`)
+</div>`;
+  })
 .join('');
-conteinerGallery.insertAdjacentHTML('beforeend', markup);
+
 };
